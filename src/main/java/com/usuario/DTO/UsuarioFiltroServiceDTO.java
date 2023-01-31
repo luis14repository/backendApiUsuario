@@ -1,4 +1,4 @@
-package com.usuario.entitty;
+package com.usuario.DTO;
 
 import java.sql.Timestamp;
 import java.util.Arrays;
@@ -11,7 +11,7 @@ import jakarta.persistence.Id;
 
 
 
-public class UsuarioJson {
+public class UsuarioFiltroServiceDTO {
 
 	
 	private Integer id;

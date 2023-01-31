@@ -1,18 +1,18 @@
 package com.usuario.service;
 
+import com.usuario.DTO.UsuarioEntradaDTO;
+import com.usuario.DTO.UsuarioFiltroServiceDTO;
 import com.usuario.entitty.Phone;
 import com.usuario.entitty.UsuarioEntity;
-import com.usuario.entitty.UsuarioJson;
-import com.usuario.entitty.UsuariosB;
 
 public interface InterfaceUser {
 	
 	
- UsuarioJson Ususarios(UsuariosB usuariosB); 
+ UsuarioFiltroServiceDTO Ususarios(UsuarioEntradaDTO usuariosB); 
 	
- Phone[] phone(UsuariosB usuariosB, Integer identificador ); 
+ Phone[] phone(UsuarioEntradaDTO usuariosB, Integer identificador ); 
 	
- UsuarioEntity usuarioNew(UsuariosB usuariosB);
+ UsuarioEntity usuarioNew(UsuarioEntradaDTO usuariosB);
  
  
 }

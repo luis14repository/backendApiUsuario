@@ -1,4 +1,6 @@
-package com.usuario.entitty;
+package com.usuario.DTO;
+
+import com.usuario.entitty.Phone;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,7 +9,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
-public class UsuariosB {
+public class UsuarioEntradaDTO {
 	
 
 	private Integer id;

@@ -6,20 +6,19 @@ import java.time.LocalDate;
 
 import org.springframework.stereotype.Service;
 
-
+import com.usuario.DTO.UsuarioEntradaDTO;
+import com.usuario.DTO.UsuarioFiltroServiceDTO;
 import com.usuario.entitty.Phone;
 import com.usuario.entitty.UsuarioEntity;
-import com.usuario.entitty.UsuarioJson;
-import com.usuario.entitty.UsuariosB;
 
 
 @Service("servicioInicial")
 public class userA implements InterfaceUser {
 
 	@Override
-	public UsuarioJson Ususarios(UsuariosB usuariosB) {
+	public UsuarioFiltroServiceDTO Ususarios(UsuarioEntradaDTO usuariosB) {
 		
-		UsuarioJson usuarioJson = new UsuarioJson();
+		UsuarioFiltroServiceDTO usuarioJson = new UsuarioFiltroServiceDTO();
 		usuarioJson.setEmail(usuariosB.getEmail());
 		usuarioJson.setName(usuariosB.getName());
 		usuarioJson.setPassword(usuariosB.getPassword());
@@ -28,7 +27,7 @@ public class userA implements InterfaceUser {
 	}
 
 	@Override
-	public Phone[] phone(UsuariosB usuariosB, Integer Identificador) {
+	public Phone[] phone(UsuarioEntradaDTO usuariosB, Integer Identificador) {
 		
 		Phone[] pphone = usuariosB.getPhone();	
 		
@@ -42,7 +41,7 @@ public class userA implements InterfaceUser {
 	
 
 	@Override
-	public UsuarioEntity usuarioNew(UsuariosB usuariosB) {
+	public UsuarioEntity usuarioNew(UsuarioEntradaDTO usuariosB) {
 		
 		LocalDate fecha1 = null;		
 		

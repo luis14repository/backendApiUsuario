@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.usuario.DTO.UsuarioEntradaDTO;
 import com.usuario.entitty.Phone;
 import com.usuario.entitty.UsuarioEntity;
-import com.usuario.entitty.UsuariosB;
 import com.usuario.exception.BusinessException;
 import com.usuario.exception.RequestException;
 import com.usuario.repository.PhonesRepository;
@@ -46,7 +46,7 @@ public class UsuarioCotroller {
 	private PhonesRepository phonesRepository;
 
 	@PostMapping("/createuserj")	
-	public ResponseEntity<BusinessException> create(@Valid @RequestBody UsuariosB usuariosB, BindingResult bindingResult) {
+	public ResponseEntity<BusinessException> create(@Valid @RequestBody UsuarioEntradaDTO usuariosB, BindingResult bindingResult) {
 		
 		if(bindingResult.hasErrors()) {
 			throw new BusinessException("Error en un campo de entrada",HttpStatus.INTERNAL_SERVER_ERROR, bindingResult.getFieldError().getDefaultMessage());
