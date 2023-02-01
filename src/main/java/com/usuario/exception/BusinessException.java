@@ -2,16 +2,21 @@ package com.usuario.exception;
 
 import org.springframework.http.HttpStatus;
 
+import com.usuario.DTO.ResponseUserDTO;
+
 public class BusinessException extends RuntimeException {
 	
-	private String code;
+	private ResponseUserDTO responseUserDTO;
 	private HttpStatus status;
+	private String code;
 	
 	
-	public BusinessException(String code, HttpStatus status, String message) {
+	public BusinessException(ResponseUserDTO responseUserDTO,String code, HttpStatus status, String message) {
 		super(message);
-		setCode(code);
 		setStatus(status);
+		setCode(code);
+		setResponseUserDTO( responseUserDTO);
+		
 	}
 
 
@@ -25,6 +30,16 @@ public class BusinessException extends RuntimeException {
 	}
 
 
+	public ResponseUserDTO getResponseUserDTO() {
+		return responseUserDTO;
+	}
+
+
+	public void setResponseUserDTO(ResponseUserDTO responseUserDTO) {
+		this.responseUserDTO = responseUserDTO;
+	}
+
+
 	public HttpStatus getStatus() {
 		return status;
 	}
@@ -34,7 +49,7 @@ public class BusinessException extends RuntimeException {
 		this.status = status;
 	}
 
-	
+
 	
 	
 }

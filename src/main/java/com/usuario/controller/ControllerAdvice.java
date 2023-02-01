@@ -31,10 +31,10 @@ public class ControllerAdvice {
 	
 	 @ExceptionHandler(value = BusinessException.class)
 	    public ResponseEntity<ErrorDTO> businessExceptionHandler(BusinessException ex){
-	        ErrorDTO error = ErrorDTO.builder().code(ex.getCode()).message(ex.getMessage()).build();
+	        ErrorDTO error = ErrorDTO.builder().responseUserDTO(ex.getResponseUserDTO()).code(ex.getCode()).message(ex.getMessage()).build();
 	        return new ResponseEntity<>(error, ex.getStatus());
 	    }
 	    
-	    
+	   
 
 }

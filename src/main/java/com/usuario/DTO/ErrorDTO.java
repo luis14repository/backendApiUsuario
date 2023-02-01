@@ -9,14 +9,15 @@ import lombok.Data;
 @Builder
 public class ErrorDTO {
 	
+	
+	private ResponseUserDTO responseUserDTO;
 	private String code;
 	private String message;
 	
-
 	
 	
-	public ErrorDTO(String code, String ex) {
-			
+	public ErrorDTO(ResponseUserDTO responseUserDTO ,String code, String ex) {
+			this.responseUserDTO = responseUserDTO;
 			this.code = code;
 			this.message = ex;
 		}

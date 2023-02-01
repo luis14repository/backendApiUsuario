@@ -12,24 +12,24 @@ import com.usuario.entitty.Phone;
 import com.usuario.entitty.UsuarioEntity;
 
 
-@Service("servicioInicial")
-public class userA implements InterfaceUser {
+@Service("servicioFiltro")
+public class userFiltro implements InterfaceServicioFilter {
 
 	@Override
-	public UsuarioFiltroServiceDTO Ususarios(UsuarioEntradaDTO usuariosB) {
+	public UsuarioFiltroServiceDTO Ususarios(UsuarioEntradaDTO usuarioEntradaDTO) {
 		
 		UsuarioFiltroServiceDTO usuarioJson = new UsuarioFiltroServiceDTO();
-		usuarioJson.setEmail(usuariosB.getEmail());
-		usuarioJson.setName(usuariosB.getName());
-		usuarioJson.setPassword(usuariosB.getPassword());
+		usuarioJson.setEmail(usuarioEntradaDTO.getEmail());
+		usuarioJson.setName(usuarioEntradaDTO.getName());
+		usuarioJson.setPassword(usuarioEntradaDTO.getPassword());
 		
 		return usuarioJson;
 	}
 
 	@Override
-	public Phone[] phone(UsuarioEntradaDTO usuariosB, Integer Identificador) {
+	public Phone[] phone(UsuarioEntradaDTO usuarioEntradaDTO, Integer Identificador) {
 		
-		Phone[] pphone = usuariosB.getPhone();	
+		Phone[] pphone = usuarioEntradaDTO.getPhone();	
 		
 		for (int i = 0; i < pphone.length; i++) {
 			pphone[i].setIdentificador(Identificador);
@@ -41,15 +41,15 @@ public class userA implements InterfaceUser {
 	
 
 	@Override
-	public UsuarioEntity usuarioNew(UsuarioEntradaDTO usuariosB) {
+	public UsuarioEntity usuarioNew(UsuarioEntradaDTO usuarioEntradaDTO) {
 		
 		LocalDate fecha1 = null;		
 		
 		UsuarioEntity usuarioEntity = new UsuarioEntity();
 		
-		usuarioEntity.setName(usuariosB.getName());
-		usuarioEntity.setEmail(usuariosB.getEmail());
-		usuarioEntity.setPassword(usuariosB.getPassword());
+		usuarioEntity.setName(usuarioEntradaDTO.getName());
+		usuarioEntity.setEmail(usuarioEntradaDTO.getEmail());
+		usuarioEntity.setPassword(usuarioEntradaDTO.getPassword());
 		usuarioEntity.setState("Activo");
 		usuarioEntity.setToken("");
 		usuarioEntity.setDatecreate(fecha1.now());

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.usuario.DTO.ResponseUserDTO;
 import com.usuario.DTO.UsuarioEntradaDTO;
 import com.usuario.entitty.Phone;
 import com.usuario.entitty.UsuarioEntity;
@@ -26,7 +27,7 @@ import com.usuario.exception.BusinessException;
 import com.usuario.exception.RequestException;
 import com.usuario.repository.PhonesRepository;
 import com.usuario.repository.UsuariosRepository;
-import com.usuario.service.InterfaceUser;
+import com.usuario.service.InterfaceServicioFilter;
 
 import jakarta.validation.Valid;
 
@@ -36,40 +37,50 @@ import jakarta.validation.Valid;
 public class UsuarioCotroller {
 
 	@Autowired
-	@Qualifier("servicioInicial")
-	private InterfaceUser interfaceUser;
+	@Qualifier("servicioFiltro")
+	private InterfaceServicioFilter interfaceUser;
 
 	@Autowired
 	private UsuariosRepository usuariosRespository;
 
 	@Autowired
 	private PhonesRepository phonesRepository;
-
+	
+	
+	
+	
 	@PostMapping("/createuserj")	
-	public ResponseEntity<BusinessException> create(@Valid @RequestBody UsuarioEntradaDTO usuariosB, BindingResult bindingResult) {
+	public ResponseEntity<BusinessException> create(@Valid @RequestBody UsuarioEntradaDTO usuarioEntradaDTO, BindingResult bindingResult) {
+		
+				
 		
 		if(bindingResult.hasErrors()) {
-			throw new BusinessException("Error en un campo de entrada",HttpStatus.INTERNAL_SERVER_ERROR, bindingResult.getFieldError().getDefaultMessage());
+			throw new BusinessException(null,"Error en un campo de entrada",HttpStatus.INTERNAL_SERVER_ERROR, bindingResult.getFieldError().getDefaultMessage());
 		}
 		
 		
-		UsuarioEntity usuarioEntity = interfaceUser.usuarioNew(usuariosB);
+		UsuarioEntity usuarioEntity = interfaceUser.usuarioNew(usuarioEntradaDTO);
 
 		usuariosRespository.save(usuarioEntity);
 		
 		
-		Phone[] phone = interfaceUser.phone(usuariosB, usuarioEntity.getId());
+		Phone[] phone = interfaceUser.phone(usuarioEntradaDTO, usuarioEntity.getId());
 		
 		
 		for (Phone p : phone) {
 				phonesRepository.save(p);			
 			}	
 		
-		throw new BusinessException("",HttpStatus.OK,"El usuario fue creado satisfactoriamente");
+		
+		
+		ResponseUserDTO responseUserDTO = new ResponseUserDTO(getUserId(usuarioEntity.getId()));		
+		
+		throw new BusinessException(responseUserDTO,"",HttpStatus.OK,"El usuario fue creado satisfactoriamente");
 			
 	}
 	
-
+	
+	
 	
 
 	@GetMapping("/getUsuarios")
