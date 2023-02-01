@@ -13,12 +13,12 @@ import com.usuario.entitty.Phone;
 import com.usuario.entitty.UsuarioEntity;
 
 
-public interface UsuariosRepository extends JpaRepository<UsuarioEntity, Integer> { 
+public interface UsuariosRepository extends JpaRepository<UsuarioEntity, String> { 
 	
 
 	
 	@Query(value = "SELECT email FROM USUARIO_ENTITY WHERE IDENTIFICADOR = ?",nativeQuery = true)		
-	List<Phone> findAllIdentificador(Integer identificador);
+	List<Phone> findAllIdentificador(String identificador);
 	
 	
 	

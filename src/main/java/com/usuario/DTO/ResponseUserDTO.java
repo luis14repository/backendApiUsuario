@@ -6,7 +6,7 @@ import com.usuario.entitty.UsuarioEntity;
 
 public class ResponseUserDTO {
 
-	private Integer id;
+	private String id;
 	private LocalDate creater;
 	private LocalDate modified;
 	private LocalDate lastLogin;
@@ -27,12 +27,19 @@ public class ResponseUserDTO {
 	}
 	
 	
-	public Integer getId() {
+	
+	public String getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+
+
+
+	public void setId(String id) {
 		this.id = id;
 	}
+
+
+
 	public LocalDate getCreater() {
 		return creater;
 	}

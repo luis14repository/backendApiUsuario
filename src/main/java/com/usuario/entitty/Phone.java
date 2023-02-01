@@ -8,20 +8,17 @@ import jakarta.validation.constraints.Pattern;
 
 @Entity
 public class Phone {
-	
-	
-	
-	
-	@Id	
-	@GeneratedValue(strategy=GenerationType.AUTO)
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	
-	private Integer identificador;
-	
-	private Integer numberPhone;	
-	
+
+	private String identificador;
+
+	private Integer numberPhone;
+
 	private String codCiudad;
-	
+
 	private String codPais;
 
 	public Integer getId() {
@@ -32,11 +29,11 @@ public class Phone {
 		this.id = id;
 	}
 
-	public Integer getIdentificador() {
+	public String getIdentificador() {
 		return identificador;
 	}
 
-	public void setIdentificador(Integer identificador) {
+	public void setIdentificador(String identificador) {
 		this.identificador = identificador;
 	}
 
@@ -63,15 +60,5 @@ public class Phone {
 	public void setCodPais(String codPais) {
 		this.codPais = codPais;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-}
 
+}

@@ -12,7 +12,7 @@ import jakarta.validation.constraints.Pattern;
 public class UsuarioEntradaDTO {
 	
 
-	private Integer id;
+	
 	
 	@NotNull(message = "El name name es nulo")	
 	//@Pattern(regexp = "[a-z][A-Z][ ]",message =  "El name  no cumple con la estructura")	
@@ -27,12 +27,7 @@ public class UsuarioEntradaDTO {
 	@NotNull(message = "El campo phone es nulo")	
 	private Phone[] phone;
 	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	
 	public String getName() {
 		return name;
 	}

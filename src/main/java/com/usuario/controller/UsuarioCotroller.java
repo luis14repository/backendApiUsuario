@@ -27,6 +27,7 @@ import com.usuario.exception.BusinessException;
 import com.usuario.exception.RequestException;
 import com.usuario.repository.PhonesRepository;
 import com.usuario.repository.UsuariosRepository;
+import com.usuario.service.InterfaceGenerateUUID;
 import com.usuario.service.InterfaceServicioFilter;
 
 import jakarta.validation.Valid;
@@ -46,7 +47,9 @@ public class UsuarioCotroller {
 	@Autowired
 	private PhonesRepository phonesRepository;
 	
-	
+	@Autowired
+	@Qualifier("serviciogenerateUUID")
+	private InterfaceGenerateUUID interfaceGenerateUUID;
 	
 	
 	@PostMapping("/createuserj")	
@@ -59,8 +62,11 @@ public class UsuarioCotroller {
 		}
 		
 		
+		
 		UsuarioEntity usuarioEntity = interfaceUser.usuarioNew(usuarioEntradaDTO);
-
+		
+		usuarioEntity.setId(interfaceGenerateUUID.generateUUID());
+		
 		usuariosRespository.save(usuarioEntity);
 		
 		
@@ -91,7 +97,7 @@ public class UsuarioCotroller {
 
 	@GetMapping(value = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public UsuarioEntity getUserId(@PathVariable("id") Integer id) {
+	public UsuarioEntity getUserId(@PathVariable("id") String id) {
 		return usuariosRespository.findById(id)
 				.orElseThrow(() -> new IllegalStateException("Error al traer el elemento" + id));
 	}
@@ -104,7 +110,7 @@ public class UsuarioCotroller {
 
 	@DeleteMapping(value = "delete/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public void delete(@PathVariable("id") Integer id) {
+	public void delete(@PathVariable("id") String id) {
 		deletePhones(id);	
 		usuariosRespository.deleteById(id);			
 	}
@@ -130,7 +136,7 @@ public class UsuarioCotroller {
 
 	@GetMapping("/getphoneid/{idr}")
 	@ResponseStatus(HttpStatus.OK)
-	public List<Phone> getPhones(@PathVariable("idr") Integer identificador) {
+	public List<Phone> getPhones(@PathVariable("idr") String identificador) {
 		return phonesRepository.findAllIdentificador(identificador);
   
 	}
@@ -144,7 +150,7 @@ public class UsuarioCotroller {
 
 	@DeleteMapping(value = "/delphoneid/{idr}")
 	@ResponseStatus(HttpStatus.OK)
-	public void deletePhones(@PathVariable("idr") Integer idr) {
+	public void deletePhones(@PathVariable("idr") String idr) {
 		phonesRepository.deletePhone(idr);
 		
 	}

@@ -13,7 +13,7 @@ import com.usuario.entitty.UsuarioEntity;
 
 
 @Service("servicioFiltro")
-public class userFiltro implements InterfaceServicioFilter {
+public class UserFiltro implements InterfaceServicioFilter {
 
 	@Override
 	public UsuarioFiltroServiceDTO Ususarios(UsuarioEntradaDTO usuarioEntradaDTO) {
@@ -27,7 +27,7 @@ public class userFiltro implements InterfaceServicioFilter {
 	}
 
 	@Override
-	public Phone[] phone(UsuarioEntradaDTO usuarioEntradaDTO, Integer Identificador) {
+	public Phone[] phone(UsuarioEntradaDTO usuarioEntradaDTO, String Identificador) {
 		
 		Phone[] pphone = usuarioEntradaDTO.getPhone();	
 		

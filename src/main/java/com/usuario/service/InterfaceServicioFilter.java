@@ -8,11 +8,11 @@ import com.usuario.entitty.UsuarioEntity;
 public interface InterfaceServicioFilter {
 	
 	
- UsuarioFiltroServiceDTO Ususarios(UsuarioEntradaDTO usuariosB); 
+ UsuarioFiltroServiceDTO Ususarios(UsuarioEntradaDTO usuarioEntradaDTO); 
 	
- Phone[] phone(UsuarioEntradaDTO usuariosB, Integer identificador ); 
+ Phone[] phone(UsuarioEntradaDTO usuarioEntradaDTO, String identificador ); 
 	
- UsuarioEntity usuarioNew(UsuarioEntradaDTO usuariosB);
+ UsuarioEntity usuarioNew(UsuarioEntradaDTO usuarioEntradaDTO);
  
  
 }
